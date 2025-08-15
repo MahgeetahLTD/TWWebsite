@@ -1,0 +1,140 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Mail, Github, Linkedin, FileText, ArrowRight } from "lucide-react";
+
+const Section = ({ id, title, children }) => (
+  <section id={id} className="scroll-mt-24">
+    <div className="max-w-6xl mx-auto px-6 md:px-8">
+      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6">{title}</h2>
+      {children}
+    </div>
+  </section>
+);
+
+export default function PersonalSite() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50">
+      <header className="sticky top-0 z-40 backdrop-blur bg-white/70 border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between">
+          <a href="#home" className="font-semibold tracking-tight">Todd Weil</a>
+          <nav className="flex items-center gap-5">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <Section id="home" title="">
+        <div className="grid md:grid-cols-2 gap-8 items-center pt-12 pb-6">
+          <div>
+            <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="text-3xl md:text-5xl font-bold leading-tight">
+              Partner & customer‑obsessed leader.
+            </motion.h1>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Results‑driven leader with 12+ years building high‑performing customer‑facing teams, driving revenue through digital platforms, and launching successful products. I map the customer journey, leverage analytics, and collaborate across functions to boost engagement and satisfaction.
+            </p>
+            <div className="mt-5 flex gap-3">
+              <a href="#contact"><Button>Contact <ArrowRight className="w-4 h-4" /></Button></a>
+              <a href="/ToddWeil_Resume.pdf" target="_blank" rel="noreferrer"><Button variant="secondary">Resume <FileText className="w-4 h-4" /></Button></a>
+            </div>
+          </div>
+          <div className="w-full aspect-square rounded-xl overflow-hidden border">
+            <img src="/mnt/data/53e12226-a6bb-41c2-bc89-1e901a176af6.png" alt="Todd Weil" className="object-cover w-full h-full" />
+          </div>
+        </div>
+      </Section>
+
+      <Section id="about" title="About">
+        <p className="text-muted-foreground leading-relaxed">
+          I’m Todd—an operator at the intersection of partnerships, product, and analytics. I’ve led Technical Account Management and Customer Success teams across CloudHealth/VMware and Arrow, launched new GTM motions, and shaped strategy with clear data stories. I care about craft, clarity, and making work feel fun.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <Badge variant="secondary">Partner Management</Badge>
+          <Badge variant="secondary">Customer Success & TAM</Badge>
+          <Badge variant="secondary">GTM & Revenue</Badge>
+          <Badge variant="secondary">Program Management (SCALE)</Badge>
+          <Badge variant="secondary">Cloud Cost / FinOps</Badge>
+          <Badge variant="secondary">Data Analytics</Badge>
+        </div>
+      </Section>
+
+      <Section id="experience" title="Experience">
+        {[{
+          company: "CloudHealth / Arrow Electronics",
+          role: "Sr. Manager – Technical Account Mgmt & CS (Americas)",
+          period: "Jul 2024 – Present",
+          bullets: [
+            "Promoted after Arrow took exclusive GTM for CloudHealth; manage TAMs and spin up CS from scratch.",
+            "Hired/onboarded new TAMs & CSMs; co-manage evolving post-sale org.",
+            "Key stakeholder in reworking route‑to‑market and pricing under Arrow."
+          ]
+        },{
+          company: "CloudHealth by VMware",
+          role: "Manager – Technical Account & Digital Program Mgmt",
+          period: "Feb 2021 – Jul 2024",
+          bullets: [
+            "Led TAM team for Digital & Mid‑Touch segments across the Americas.",
+            "Partnered with execs and cloud leaders on best practices and optimizations.",
+            "Built SCALE one‑to‑many program delivering insights and self‑serve enablement."
+          ]
+        },{
+          company: "Fuze",
+          role: "Manager – Technical Account Management",
+          period: "Aug 2019 – Feb 2021",
+          bullets: [
+            "Hired and led 7 TAMs for US Premium Enterprise portfolio.",
+            "Launched the TAM function with formal docs and an associate role path."
+          ]
+        },{
+          company: "Verizon Media (Yahoo!/AOL DSP)",
+          role: "Manager – Account Strategy",
+          period: "Feb 2015 – Feb 2019",
+          bullets: [
+            "Led 8 strategists across US offices; managed $90MM+ annual spend.",
+            "Drove BrightRoll acquisition integration and Yahoo/AOL parity go‑to‑market."
+          ]
+        },{
+          company: "Yahoo",
+          role: "Strategic Product Lead – Yahoo DSP",
+          period: "Dec 2009 – Feb 2015",
+          bullets: [
+            "Developed and trained global best practices for DSP+.",
+            "Ran cross‑functional product ‘war rooms’ with eng and execs."
+          ]
+        }].map((job, i) => (
+          <Card key={i}>
+            <CardHeader>
+              <CardTitle className="flex justify-between text-lg">
+                <span>{job.company}</span>
+                <span className="text-xs text-muted-foreground">{job.period}</span>
+              </CardTitle>
+              <div className="text-sm text-muted-foreground">{job.role}</div>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
+                {job.bullets.map((b, j) => (<li key={j}>{b}</li>))}
+              </ul>
+            </CardContent>
+          </Card>
+        ))}
+      </Section>
+
+      <Section id="contact" title="Contact">
+        <p className="text-sm text-muted-foreground mb-4">Email me at <a href="mailto:Tweil11@yahoo.com" className="underline">Tweil11@yahoo.com</a> or connect on LinkedIn.</p>
+        <div className="flex gap-3">
+          <a href="mailto:Tweil11@yahoo.com"><Button><Mail className="w-4 h-4" /> Email</Button></a>
+          <a href="https://github.com/" target="_blank" rel="noreferrer"><Button variant="outline"><Github className="w-4 h-4" /> GitHub</Button></a>
+          <a href="https://www.linkedin.com/in/toddweil/" target="_blank" rel="noreferrer"><Button variant="outline"><Linkedin className="w-4 h-4" /> LinkedIn</Button></a>
+        </div>
+      </Section>
+
+      <footer className="py-10 text-center text-sm text-muted-foreground">
+        © {new Date().getFullYear()} Todd Weil • Built with ❤️
+      </footer>
+    </div>
+  );
+}
